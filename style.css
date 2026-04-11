@@ -1,0 +1,127 @@
+/* Обнуление отступов и настройка шрифта */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0a0f2a 0%, #0a1a3a 100%);
+    /* Тёмно-синий градиентный фон */
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Шапка сайта */
+header {
+    background: linear-gradient(90deg, #1a2a6c, #b21f1f, #fdbb4d);
+    background: linear-gradient(90deg, #0f1a4a, #1e3a8a, #fbbf24);
+    /* Синий -> ярко-синий -> жёлтый */
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border-bottom: 3px solid #fbbf24;
+}
+
+header h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #fff, #fbbf24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Основной контент */
+main {
+    flex: 1;
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: rgba(15, 25, 65, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+main h2 {
+    color: #fbbf24;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    border-left: 4px solid #fbbf24;
+    padding-left: 1rem;
+    display: inline-block;
+}
+
+/* Стили для ссылок-кнопок */
+main a {
+    display: block;
+    /* Делаем ссылки блочными, чтобы они были как кнопки */
+    width: 80%;
+    max-width: 300px;
+    margin: 1rem auto;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #1e3a8a, #0f1a4a);
+    color: #fbbf24;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    border: 1px solid #fbbf24;
+    transition: all 0.3s ease;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+/* Эффект при наведении на кнопку */
+main a:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #fbbf24, #eab308);
+    color: #0f1a4a;
+    border-color: #fff;
+    box-shadow: 0 8px 20px rgba(251, 191, 36, 0.4);
+}
+
+/* Эффект при клике */
+main a:active {
+    transform: translateY(2px);
+}
+
+/* Подвал */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(10, 15, 35, 0.9);
+    border-top: 1px solid rgba(251, 191, 36, 0.3);
+    font-size: 0.8rem;
+    color: #fbbf24;
+}
+
+/* Адаптивность для телефонов */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    main {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    main a {
+        width: 90%;
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+    }
+
+    main h2 {
+        font-size: 1.2rem;
+    }
+}
