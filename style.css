@@ -1,4 +1,4 @@
-/* Обнуление отступов и настройка шрифта */
+/* Обнуление отступов */
 * {
     margin: 0;
     padding: 0;
@@ -6,122 +6,248 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0a0f2a 0%, #0a1a3a 100%);
-    /* Тёмно-синий градиентный фон */
+    font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #0a0f2a 0%, #0a1a3a 50%, #0a0f2a 100%);
     color: #fff;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    line-height: 1.6;
 }
 
-/* Шапка сайта */
+/* Шапка сайта с анимацией */
 header {
-    background: linear-gradient(90deg, #1a2a6c, #b21f1f, #fdbb4d);
-    background: linear-gradient(90deg, #0f1a4a, #1e3a8a, #fbbf24);
-    /* Синий -> ярко-синий -> жёлтый */
+    background: linear-gradient(90deg, #0f1a4a, #1e3a8a, #fbbf24, #1e3a8a, #0f1a4a);
+    background-size: 200% auto;
+    animation: gradientShift 8s ease infinite;
     padding: 2rem 1rem;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     border-bottom: 3px solid #fbbf24;
 }
 
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 header h1 {
-    font-size: 3rem;
-    letter-spacing: 3px;
+    font-size: 3.5rem;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    background: linear-gradient(135deg, #fff, #fbbf24);
+    background: linear-gradient(135deg, #fff, #fbbf24, #ffed4a);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px rgba(251, 191, 36, 0.3); }
+    to { text-shadow: 0 0 25px rgba(251, 191, 36, 0.6); }
 }
 
 /* Основной контент */
 main {
-    flex: 1;
-    max-width: 800px;
-    margin: 3rem auto;
-    padding: 2rem;
-    background: rgba(15, 25, 65, 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
-    border: 1px solid rgba(251, 191, 36, 0.3);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1.5rem 2rem;
+}
+
+/* Секции с карточками */
+main > h2 {
     text-align: center;
-}
-
-main h2 {
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem;
     color: #fbbf24;
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-    border-left: 4px solid #fbbf24;
-    padding-left: 1rem;
+    position: relative;
     display: inline-block;
+    width: 100%;
 }
 
-/* Стили для ссылок-кнопок */
-main a {
+main > h2:first-of-type {
+    margin-top: 0;
+}
+
+main > h2::after {
+    content: '';
     display: block;
-    /* Делаем ссылки блочными, чтобы они были как кнопки */
-    width: 80%;
-    max-width: 300px;
-    margin: 1rem auto;
-    padding: 1rem 1.5rem;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #fbbf24, transparent);
+    margin: 0.5rem auto 0;
+}
+
+/* Карточки для версий ОС */
+main > p {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 1.5rem 0 0.8rem;
+    padding-left: 1rem;
+    border-left: 4px solid #fbbf24;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Контейнер для кнопок скачивания (группируем по ОС) */
+.download-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Кнопки скачивания */
+main a[href$=".rar"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     background: linear-gradient(135deg, #1e3a8a, #0f1a4a);
     color: #fbbf24;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.1rem;
+    padding: 0.8rem 1.5rem;
     border-radius: 50px;
-    border: 1px solid #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.5);
     transition: all 0.3s ease;
-    text-align: center;
-    letter-spacing: 1px;
+    font-size: 1rem;
+    margin: 0.3rem;
 }
 
-/* Эффект при наведении на кнопку */
-main a:hover {
+main a[href$=".rar"]:hover {
     transform: translateY(-3px);
     background: linear-gradient(135deg, #fbbf24, #eab308);
     color: #0f1a4a;
     border-color: #fff;
-    box-shadow: 0 8px 20px rgba(251, 191, 36, 0.4);
+    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
 }
 
-/* Эффект при клике */
-main a:active {
-    transform: translateY(2px);
+/* Стиль для Java ссылки */
+main a[href*="oracle"] {
+    display: inline-block;
+    background: linear-gradient(135deg, #2d3748, #1a202c);
+    color: #fbbf24;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    border: 1px solid #fbbf24;
+    transition: all 0.3s ease;
+    margin: 0.5rem 0;
+}
+
+main a[href*="oracle"]:hover {
+    background: #fbbf24;
+    color: #1a202c;
+    transform: scale(1.02);
+    box-shadow: 0 5px 20px rgba(251, 191, 36, 0.4);
+}
+
+/* Карточки инструкций */
+main > h2:not(:first-of-type) {
+    margin-top: 3rem;
+}
+
+/* Грид для инструкций */
+.instructions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.instruction-card {
+    background: rgba(15, 25, 65, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 1.5rem;
+    border: 1px solid rgba(251, 191, 36, 0.2);
+    transition: all 0.3s ease;
+}
+
+.instruction-card:hover {
+    border-color: rgba(251, 191, 36, 0.5);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.instruction-card p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #fbbf24;
+    display: inline-block;
+}
+
+.instruction-card ol {
+    padding-left: 1.5rem;
+}
+
+.instruction-card li {
+    margin: 0.8rem 0;
+    line-height: 1.5;
+}
+
+/* Стиль для кода */
+code {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    display: inline-block;
+    margin: 0.2rem 0;
+}
+
+/* Блок совета */
+.tip {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(30, 58, 138, 0.3));
+    border-left: 4px solid #fbbf24;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin: 2rem 0 0;
+    text-align: center;
+}
+
+.tip code {
+    background: rgba(0, 0, 0, 0.6);
 }
 
 /* Подвал */
 footer {
     text-align: center;
     padding: 1.5rem;
-    background: rgba(10, 15, 35, 0.9);
-    border-top: 1px solid rgba(251, 191, 36, 0.3);
-    font-size: 0.8rem;
+    background: rgba(10, 15, 35, 0.95);
+    border-top: 1px solid rgba(251, 191, 36, 0.2);
+    margin-top: 2rem;
+    font-size: 0.85rem;
     color: #fbbf24;
 }
 
-/* Адаптивность для телефонов */
-@media (max-width: 600px) {
+/* Адаптивность */
+@media (max-width: 768px) {
     header h1 {
         font-size: 2rem;
     }
-
+    
     main {
-        margin: 1rem;
-        padding: 1rem;
+        padding: 0 1rem 1rem;
     }
-
-    main a {
-        width: 90%;
-        padding: 0.8rem 1rem;
-        font-size: 1rem;
+    
+    .instructions-grid {
+        grid-template-columns: 1fr;
     }
-
-    main h2 {
-        font-size: 1.2rem;
+    
+    .download-group {
+        justify-content: center;
+    }
+    
+    main a[href$=".rar"] {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
     }
 }
